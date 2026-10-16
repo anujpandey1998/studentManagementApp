@@ -10,7 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import TimetableScreen from '../screens/TimetableScreen';
 import NoticesScreen from '../screens/NoticesScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import StudentListScreen from '../screens/StudentListScreen';
+// import StudentListScreen from '../screens/StudentListScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -21,27 +21,21 @@ const AppNavigator = () => {
         initialRouteName="Login"
         screenOptions={{ headerShown: false }}
       >
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-        />
+        <Stack.Screen name="Login" component={LoginScreen} />
 
         <Stack.Screen name="SignUp" component={SignUpScreen} />
 
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-        />
+        <Stack.Screen name="Home" component={HomeScreen} />
 
         <Stack.Screen name="Timetable" component={TimetableScreen} />
         <Stack.Screen name="Notices" component={NoticesScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
 
-        <Stack.Screen
+        {/* <Stack.Screen
           name="StudentList"
           component={StudentListScreen}
           options={{ headerShown: true, title: 'Students' }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

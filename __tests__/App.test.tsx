@@ -1,13 +1,9 @@
-/**
- * @format
- */
+import { getHomeRouteName } from '../src/app/navigation/roleHomeRoute';
 
-import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
-import App from '../App';
-
-test('renders correctly', async () => {
-  await ReactTestRenderer.act(() => {
-    ReactTestRenderer.create(<App />);
-  });
+test.each([
+  ['admin', 'AdminHome'],
+  ['teacher', 'TeacherHome'],
+  ['student', 'StudentHome'],
+] as const)('maps %s only to its own home route', (role, route) => {
+  expect(getHomeRouteName(role)).toBe(route);
 });

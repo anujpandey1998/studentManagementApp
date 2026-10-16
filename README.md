@@ -1,6 +1,67 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+## Vidya — Student Management App
+
+Vidya is a portfolio-focused React Native + TypeScript student management app
+using Supabase Auth, Postgres, and Row Level Security. Supabase was chosen over
+a separate Node/Express API so mobile and a future web client can share the
+same database permissions and auth contract without maintaining duplicate
+authorization logic.
+
+The repository includes secure session persistence, role-gated navigation,
+seeded local school data, student search/pagination and admin editing, daily
+attendance with monthly summaries, results, timetable, assignments, fees, and
+notices. See [the implementation status and run guide](docs/phase-3-7.md) for
+what is implemented and the remaining production integrations. Auth setup and
+demo accounts are documented in [Phase 2](docs/phase-2.md); the schema and
+security model are documented in [Phase 1](docs/phase-1.md).
+
+### Stack
+
+- React Native 0.87, TypeScript strict mode, React Navigation 7
+- Redux Toolkit for auth/global state; TanStack Query 5 for server state
+- Supabase Auth/Postgres/Storage with RLS
+- React Hook Form + Zod for input validation
+- Axios/Supabase REST client with centralized API error normalization
+
+### Quick start
+
+1. Install Node.js 22.11+ and Docker Desktop, then run `npm ci`.
+2. Copy `.env.example` to `.env`; start/reset the local Supabase backend and
+   configure its local publishable key using the steps in
+   [docs/phase-2.md](docs/phase-2.md).
+3. Start Metro with `npm start -- --reset-cache`, then in another terminal run
+   `npm run android` with an Android emulator available.
+
+Use only the Supabase **publishable** key in the mobile app. Never add a
+service-role key or server-side Firebase credential to `.env` or a client
+bundle. Local reset erases local data and must never target production.
+
+### Checks
+
+```powershell
+npm run typecheck
+npm run lint:foundation
+npm run format:check
+npm test -- --runInBand
+npm run backend:test
+```
+
+The current feature and release boundary is explicit in
+[docs/phase-3-7.md](docs/phase-3-7.md): payments are sandbox-only; FCM delivery
+requires Firebase native configuration and server credentials; full offline
+mutation/reconciliation, analytics, functional language/theme settings, and
+signed store builds remain release work. Never commit secrets or production
+credentials.
+
+## React Native CLI reference
 
 # Getting Started
+
+## Phase 2: run the authenticated app
+
+The app uses the local Supabase project for authentication and account roles.
+Follow [the Phase 2 setup guide](docs/phase-2.md) to configure `.env`, start the
+backend, and sign in with a seeded demo account. On Android, run Metro and the
+Android app in separate terminals after starting an emulator.
 
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 

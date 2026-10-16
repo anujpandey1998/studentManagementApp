@@ -6,4 +6,7 @@ export type RootStackParamList = {
   Notices: undefined;
   Profile: undefined;
   StudentList: undefined;
+  TeacherList: undefined;
+  CartItem: undefined;
+  CreateStudent: undefined;
 };

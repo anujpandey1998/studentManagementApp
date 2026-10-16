@@ -12,13 +12,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-type TabName = 'Home' | 'Attendance' | 'Marks' | 'Fees';
+type TabName = 'Home' | 'Attendance' | 'Marks' | 'Fees' | 'Carts';
 
 const tabs: { name: TabName; icon: string }[] = [
   { name: 'Home', icon: '⌂' },
   { name: 'Attendance', icon: '▦' },
   { name: 'Marks', icon: '▤' },
   { name: 'Fees', icon: '₹' },
+  { name: 'Carts', icon: '🛒' },
 ];
 
 const HomeScreen = ({ navigation }: Props) => {
@@ -40,6 +41,7 @@ const HomeScreen = ({ navigation }: Props) => {
     },
     Marks: { eyebrow: 'Unit Test 2', title: 'Marks', detail: '' },
     Fees: { eyebrow: 'Term 2', title: 'Fees', detail: '' },
+    Carts: { eyebrow: 'Carts', title: 'Carts', detail: '' },
   }[activeTab];
 
   return (
@@ -72,7 +74,10 @@ const HomeScreen = ({ navigation }: Props) => {
         )}
         {activeTab === 'Attendance' && <Attendance />}
         {activeTab === 'Marks' && (
-          <Marks onViewStudents={() => navigation.navigate('StudentList')} />
+          <Marks
+            onViewStudents={() => navigation.navigate('StudentList')}
+            onViewTeachers={() => navigation.navigate('TeacherList')}
+          />
         )}
         {activeTab === 'Fees' && <Fees />}
       </ScrollView>
@@ -325,7 +330,13 @@ function Attendance() {
   );
 }
 
-function Marks({ onViewStudents }: { onViewStudents: () => void }) {
+function Marks({
+  onViewStudents,
+  onViewTeachers,
+}: {
+  onViewStudents: () => void;
+  onViewTeachers: () => void;
+}) {
   const subjects = [
     { name: 'Maths', marks: 46, color: '#2D7165' },
     { name: 'Science', marks: 43, color: '#2D7165' },
@@ -365,6 +376,9 @@ function Marks({ onViewStudents }: { onViewStudents: () => void }) {
 
       <Pressable style={styles.studentLink} onPress={onViewStudents}>
         <Text style={styles.studentLinkText}>View students</Text>
+      </Pressable>
+      <Pressable style={styles.studentLink} onPress={onViewTeachers}>
+        <Text style={styles.studentLinkText}>View Teachers</Text>
       </Pressable>
       <View style={styles.notice}>
         <Text style={styles.marksNotice}>

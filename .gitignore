@@ -65,6 +65,10 @@ yarn-error.log
 
 # testing
 /coverage
+.env
+.env.*
+!.env.example
+supabase/.temp/
 
 # Yarn
 .yarn/*
